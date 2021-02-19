@@ -39,3 +39,11 @@ Scheduled to use Gem
 - bcrypt
 - carrier-wave
 - Devise
+- better_errors
+- Capistrano
+- capistrano-rbenv
+- unicorn
+- ransack
+- aws-sdk-s3
+- guard-livereload
+- letter_opener
