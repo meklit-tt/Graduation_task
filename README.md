@@ -36,7 +36,7 @@ https://cacoo.com/diagrams/QrH18IL8ekmTupve-71305.png
 
 Scheduled to use Gem
 
-- bcrypt
+- kaminari
 - carrier-wave
 - Devise
 - better_errors
@@ -44,7 +44,7 @@ Scheduled to use Gem
 - capistrano-rbenv
 - unicorn
 - ransack
-- aws-sdk-s3
+- cloudinary
 - guard-livereload
 - letter_opener
 - commentator
