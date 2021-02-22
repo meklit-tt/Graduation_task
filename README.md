@@ -47,3 +47,5 @@ Scheduled to use Gem
 - aws-sdk-s3
 - guard-livereload
 - letter_opener
+- commentator
+- oauth2
