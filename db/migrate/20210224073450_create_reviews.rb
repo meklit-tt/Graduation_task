@@ -5,8 +5,8 @@ class CreateReviews < ActiveRecord::Migration[5.2]
       t.string :rating
       t.datetime :review_date
 
-      t.references :user, foreign_key: true 
-      t.references :restaurant, foreign_key: true
+    
+      t.references :restaurant, foreign_key:
       t.timestamps
     end
   end

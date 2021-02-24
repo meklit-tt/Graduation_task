@@ -10,45 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_24_033540) do
+ActiveRecord::Schema.define(version: 2021_02_24_075027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "restaurants", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "address", null: false
-    t.string "specials", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category"
+    t.bigint "{:foreign_key=>true}_id"
     t.bigint "category_id"
     t.index ["category_id"], name: "index_restaurants_on_category_id"
+    t.index ["{:foreign_key=>true}_id"], name: "index_restaurants_on_{:foreign_key=>true}_id"
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.text "comment"
-    t.string "rating"
-    t.datetime "review_date"
-    t.bigint "user_id"
-    t.bigint "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "restaurant_id"
     t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "restaurants", "categories"
