@@ -10,33 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_24_075027) do
+ActiveRecord::Schema.define(version: 2021_02_25_131847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "restaurants", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.text "specials"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "category"
-    t.bigint "{:foreign_key=>true}_id"
-    t.bigint "category_id"
-    t.index ["category_id"], name: "index_restaurants_on_category_id"
-    t.index ["{:foreign_key=>true}_id"], name: "index_restaurants_on_{:foreign_key=>true}_id"
+    t.integer "user_id"
+    t.integer "category_id"
+    t.string "rest_image_file_name"
+    t.string "rest_image_content_type"
+    t.bigint "rest_image_file_size"
+    t.datetime "rest_image_updated_at"
   end
 
   create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.bigint "restaurant_id"
-    t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.integer "user_id"
+    t.integer "restaurant_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -51,7 +56,4 @@ ActiveRecord::Schema.define(version: 2021_02_24_075027) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "restaurants", "categories"
-  add_foreign_key "reviews", "restaurants"
-  add_foreign_key "reviews", "users"
 end
