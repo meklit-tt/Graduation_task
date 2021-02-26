@@ -1,10 +1,10 @@
 class RestaurantsController < ApplicationController
   before_action :find_restaurant, only: [:show, :edit, :update, :destroy]
-before_action :authenticate_user!, only: [:new, :edit]
+  before_action :authenticate_user!, only: [:new, :edit]
 
 def index
 if params[:category].blank?
-@books = Restaurant.all.order("created_at DESC")
+@restaurants = Restaurant.all.order("created_at DESC")
 else
 @category_id = Category.find_by(name: params[:category]).id
 @restaurants = Restaurant.where(:category_id => @category_id).order("created_at DESC")
@@ -12,6 +12,7 @@ end
 end
 
 def show
+#@restaurant= Restaurant.find(params[:id])
 if @restaurant.reviews.blank?
 @average_review = 0
 else
